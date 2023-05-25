@@ -18,9 +18,9 @@ export default function Header() {
         </div>
         <div>
           <ul className='flex space-x-10'>
-            <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer ${pathMatchRoute("/") && "text-black border-b-green-500"}`}  onClick={()=>navigate
+            <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer ${pathMatchRoute("/") && "!text-black !border-b-green-500"}`}  onClick={()=>navigate
           ("/")}>Home</li>
-            <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer ${pathMatchRoute("/sign-in") && "text-black border-b-green-500"}`}  onClick={()=>navigate
+            <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer ${pathMatchRoute("/sign-in") && "!text-black !border-b-green-500"}`}  onClick={()=>navigate
           ("/sign-in")}>Sign in</li>
           </ul>
         </div>
