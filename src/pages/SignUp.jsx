@@ -17,7 +17,7 @@ export default function SignUp() {
     email: "",
     password: "",
   });
-  const { email, password, name } = formData;
+  const { email, password, name} = formData;
   function onChange(e) {
     setFormData((prevState) => ({
       ...prevState,
@@ -66,7 +66,7 @@ export default function SignUp() {
               id="name"
               value={name}
               onChange={onChange}
-              placeholder="Full Name"
+              placeholder="Name of Hospital"
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white  border-gray-300 rounded
              transition ease-in-out mb-6"
             />
