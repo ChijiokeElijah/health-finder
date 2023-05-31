@@ -13,7 +13,7 @@ export default function Profile() {
   const {name, email} = formData;
   function onLogOut(){
     auth.signOut()
-    navigate("")
+    navigate("/")
   }
   return (
     <>
