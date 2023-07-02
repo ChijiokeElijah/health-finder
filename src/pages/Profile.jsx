@@ -16,8 +16,8 @@ export default function Profile() {
   const navigate = useNavigate();
   const [changeDetail, setChangeDetail] = useState(false);
   const [formData, setFormData] = useState({
-    name: "FMC Umuahia",
-    email: "fmcumuahia@gmail.com",
+    name:  "",
+    email: "",
   });
   const { name, email } = formData;
   function onLogOut() {
@@ -64,10 +64,15 @@ export default function Profile() {
         })
       });
       setListings(listings)
+      setFormData({
+        name: auth.currentUser.displayName,
+        email: auth.currentUser.email
+      })
+
       setLoading(false);
     }
     fetchUserListing();
-  }, [auth.currentUser.uid])
+  }, [auth.currentUser.uid, auth.currentUser.email, auth.currentUser.displayName ])
   async function onDelete(listingID){
     if(window.confirm("Are you sure you want to delete?")){
       await deleteDoc(doc(db, 'Hospitals', listingID))
@@ -105,7 +110,8 @@ export default function Profile() {
               type="email"
               id="email"
               value={email}
-              disabled
+              disabled={!changeDetail}
+              onChange={onChange}
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded 
           transition ease-in-out mb-6"
             />

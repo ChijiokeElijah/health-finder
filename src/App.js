@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyEditor from "./pages/MyEditor";
 import EditListing from "./pages/EditListing";
+import Hospital from "./pages/Hospital";
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path='/:hospitalName/:listingId' element={<Hospital />} />
           <Route path="create-hospital" element={<PrivateRoute/>}>
             <Route path="/create-hospital" element={<MyEditor/>}/>
           </Route>

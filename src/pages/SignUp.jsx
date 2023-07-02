@@ -31,7 +31,7 @@ export default function SignUp() {
       const auth = getAuth()
       const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       updateProfile(auth.currentUser, {displayName: name})
-      const user =userCredential.user
+      const user = userCredential.user
       const formDataCopy = {...formData}
       delete formDataCopy.password
       formDataCopy.timestamp = serverTimestamp();

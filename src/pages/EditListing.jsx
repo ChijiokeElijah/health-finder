@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useNavigate } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import Spinner from "../components/Spinner";
 import { EditorState } from "draft-js";
 import {Editor} from "react-draft-wysiwyg"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import '../App.css'
 import { db } from "../firebase";
-import { serverTimestamp, addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { serverTimestamp, doc, getDoc, updateDoc } from "firebase/firestore";
 import {getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import {v4 as uuidv4} from "uuid";
 import { getAuth } from "firebase/auth";
@@ -15,7 +16,7 @@ import {convertToHTML} from 'draft-convert'
 import { useParams } from "react-router";
 
 export default function EditListing() {
-    const navigate = useNavigate
+    const navigate = useNavigate()
   const [editorState, setEditorState] = useState(
   () => EditorState.createEmpty(),
   );
