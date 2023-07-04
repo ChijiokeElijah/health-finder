@@ -11,7 +11,8 @@ import {v4 as uuidv4} from "uuid";
 import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 import { CiImageOn } from "react-icons/ci";
-import {convertToHTML} from 'draft-convert'
+import {convertToHTML} from 'draft-convert';
+
 
 export default function MyEditor() {
   const [editorState, setEditorState] = useState(
