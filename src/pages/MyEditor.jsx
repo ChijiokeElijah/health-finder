@@ -15,6 +15,7 @@ import {convertToHTML} from 'draft-convert';
 
 
 export default function MyEditor() {
+  const [geoLocationEnabled, setGeoLocationEnabled] = useState(false)
   const [editorState, setEditorState] = useState(
   () => EditorState.createEmpty(),
   );
@@ -40,9 +41,11 @@ export default function MyEditor() {
     State: "",
     PhoneNumber: "",
     images: {},
+    latitude: 0,
+    longitude:0
     
   });
-  const { name, address, email, State, PhoneNumber, LGA, images } = formData;
+  const { name, address, email, latitude, longitude, State, PhoneNumber, LGA, images } = formData;
 
   function onChange(e) {
     if(e.target.files){
@@ -71,6 +74,27 @@ export default function MyEditor() {
       setLoading(false);
       toast.error("Add an image")
       return;
+    }
+    let geolocation ={}
+    let location 
+    if(geoLocationEnabled){
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`)
+      const data = await response.json();
+      console.log(data);
+      geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
+      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
+
+      location = data.status === "ZERO-RESULTS" && undefined;
+
+      if(location === undefined || location.includes("undefined")){
+        loading(false)
+        toast.error('Please enter a current address');
+        return;
+      }
+      toast.success("Yeah!")  
+    }else{
+      geolocation.lat = latitude;
+      geolocation.lng = longitude
     }
 
     async function storeImage(image){
@@ -120,12 +144,15 @@ export default function MyEditor() {
     const formDataCopy = {
       ...formData,
       imgUrls, 
+      geolocation,
       content: convertedContent,
      timestamp: serverTimestamp(),
     userRef: auth.currentUser.uid,
     };
 
     delete formDataCopy.images;
+    delete formDataCopy.latitude;
+    delete formDataCopy.longitude
     const docRef = await addDoc(collection(db, "Hospitals"), formDataCopy);
     setLoading(false);
     toast.success("Hospital Created");
@@ -173,6 +200,26 @@ export default function MyEditor() {
             placeholder="Address"
             className="w-full px-4 py-2 text-xl text-gray-700 bg-white  !border-gray-300 rounded transition ease-in-out mb-6"
           />
+          {!geoLocationEnabled && (
+            <div className="flex space-x-6 justify-start mb-6">
+              <div>
+                <input type="" name="" id="latitude" value={latitude} onChange={onChange} required  placeholder="latitude"
+                 className="w-full px-4 py-2 text-xl
+                text-gray-700 bg-white border border-gray-300 rounded
+                transition duration-150 ease-in-out
+               focus:text-gray-700 focus:bg-white
+                focus:border-slate-600 text-center"/>
+              </div>
+              <div>
+                <input type="" name="" id="longitude" value={longitude} onChange={onChange} required placeholder="longitude"
+                 className="w-full px-4 py-2 text-xl
+                text-gray-700 bg-white border border-gray-300 rounded
+                transition duration-150 ease-in-out
+               focus:text-gray-700 focus:bg-white
+                focus:border-slate-600 text-center"/>
+              </div>
+            </div>
+          )}
           <div className="flex justify-end space-x-0 gap-2">
             <input
               type="text"
