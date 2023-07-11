@@ -53,7 +53,7 @@ export default function Hospital() {
         < FaCopy className='text-lg text-slate-500'/>
       </div>
       {shareLinkCopied && (
-        <p  className='fixed top-[23%] right-[5%] font-semibold border-2 border-gray-400 rounded-md bg-white z-10 p-2 '>Link Copied</p>
+        <p  className='fixed top-[23%] right-[5%] font-semibold border-2 border-gray-400 rounded-md bg-white z-50 p-2 '>Link Copied</p>
       )}
 
       <div className=" m-4 flex flex-col md:flex-row max-w-6xl 

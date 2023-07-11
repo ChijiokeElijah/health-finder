@@ -54,7 +54,7 @@ export default function SignUp() {
       >
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
           <img
-            src="https://media.istockphoto.com/id/694319550/photo/mans-hand-is-holding-and-turning-a-key.jpg?s=612x612&w=0&k=20&c=OowoW15zoY21k_YgdL6Cm_tMKV-yAdG11-bMtvrZvE4="
+            src="https://media.istockphoto.com/id/1400388878/photo/closeup-african-american-woman-nurse-making-a-heart-shape-with-her-hands-while-smiling-and.jpg?s=612x612&w=0&k=20&c=25ezm8RAZOQZE2UaSIuY59txwZjcPBhaO5g2j6Osvyk="
             alt="key"
             className="w-full rounded-2xl"
           />
