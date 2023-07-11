@@ -6,11 +6,11 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import '../App.css'
 import { db } from "../firebase";
 import { serverTimestamp, addDoc, collection } from "firebase/firestore";
-import {getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
-import {v4 as uuidv4} from "uuid";
+// import {getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
+// import {v4 as uuidv4} from "uuid";
 import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
-import { CiImageOn } from "react-icons/ci";
+// import { CiImageOn } from "react-icons/ci";
 import {convertToHTML} from 'draft-convert';
 
 
@@ -40,20 +40,19 @@ export default function MyEditor() {
     LGA: "",
     State: "",
     PhoneNumber: "",
-    images: {},
     latitude: 0,
     longitude:0
     
   });
-  const { name, address, email, latitude, longitude, State, PhoneNumber, LGA, images } = formData;
+  const { name, address, email, latitude, longitude, State, PhoneNumber, LGA} = formData;
 
   function onChange(e) {
-    if(e.target.files){
-      setFormData((prevState)=>({
-        ...prevState,
-        images: e.target.files
-      }))
-    }
+    // if(e.target.files){
+    //   setFormData((prevState)=>({
+    //     ...prevState,
+    //     images: e.target.files
+    //   }))
+    // }
     if (!e.target.files) {
       setFormData((prevState) => ({
         ...prevState,
@@ -70,11 +69,11 @@ export default function MyEditor() {
     e.preventDefault();
     setLoading(true);
 
-    if(images.length < 1){
-      setLoading(false);
-      toast.error("Add an image")
-      return;
-    }
+    // if(images.length < 1){
+    //   setLoading(false);
+    //   toast.error("Add an image")
+    //   return;
+    // }
     let geolocation ={}
     let location 
     if(geoLocationEnabled){
@@ -97,60 +96,60 @@ export default function MyEditor() {
       geolocation.lng = longitude
     }
 
-    async function storeImage(image){
-      return new Promise((resolve, reject) =>{
-        const storage = getStorage()
-        const filename = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
-        const storageRef = ref(storage, filename );
-        const uploadTask = uploadBytesResumable(storageRef, image);
-        uploadTask.on('state_changed', 
-  (snapshot) => {
-    // Observe state change events such as progress, pause, and resume
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
-    switch (snapshot.state) {
-      case 'paused':
-        console.log('Upload is paused');
-        break;
-      case 'running':
-        console.log('Upload is running');
-        break;
-    }
-  }, 
-  (error) => {
-    // Handle unsuccessful uploads
-    reject(error)
-  }, 
-  () => {
-    // Handle successful uploads on complete
-    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      resolve(downloadURL);
-    });
-  }
-);
-      })
-    }
+//     async function storeImage(image){
+//       return new Promise((resolve, reject) =>{
+//         const storage = getStorage()
+//         const filename = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
+//         const storageRef = ref(storage, filename );
+//         const uploadTask = uploadBytesResumable(storageRef, image);
+//         uploadTask.on('state_changed', 
+//   (snapshot) => {
+//     // Observe state change events such as progress, pause, and resume
+//     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+//     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//     console.log('Upload is ' + progress + '% done');
+//     switch (snapshot.state) {
+//       case 'paused':
+//         console.log('Upload is paused');
+//         break;
+//       case 'running':
+//         console.log('Upload is running');
+//         break;
+//     }
+//   }, 
+//   (error) => {
+//     // Handle unsuccessful uploads
+//     reject(error)
+//   }, 
+//   () => {
+//     // Handle successful uploads on complete
+//     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+//     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+//       resolve(downloadURL);
+//     });
+//   }
+// );
+//       })
+//     }
 
-    const imgUrls = await Promise.all(
-    [...images].map((image) =>storeImage(image))).catch((error)=>{
-      setLoading(false)
-      toast.error("images not uploaded")
-      return
-    });
+//     const imgUrls = await Promise.all(
+//     [...images].map((image) =>storeImage(image))).catch((error)=>{
+//       setLoading(false)
+//       toast.error("images not uploaded")
+//       return
+//     });
 
     
     const formDataCopy = {
       ...formData,
-      imgUrls, 
+      // imgUrls,
       geolocation,
       content: convertedContent,
      timestamp: serverTimestamp(),
     userRef: auth.currentUser.uid,
     };
 
-    delete formDataCopy.images;
+    // delete formDataCopy.images;
     delete formDataCopy.latitude;
     delete formDataCopy.longitude
     const docRef = await addDoc(collection(db, "Hospitals"), formDataCopy);
@@ -203,7 +202,8 @@ export default function MyEditor() {
           {!geoLocationEnabled && (
             <div className="flex space-x-6 justify-start mb-6">
               <div>
-                <input type="" name="" id="latitude" value={latitude} onChange={onChange} required  placeholder="latitude"
+                <p className='text-gray-600'>Latitude</p>
+                <input type="number" name="latitude" id="latitude" value={latitude} onChange={onChange} required  placeholder="latitude"
                  className="w-full px-4 py-2 text-xl
                 text-gray-700 bg-white border border-gray-300 rounded
                 transition duration-150 ease-in-out
@@ -211,7 +211,8 @@ export default function MyEditor() {
                 focus:border-slate-600 text-center"/>
               </div>
               <div>
-                <input type="" name="" id="longitude" value={longitude} onChange={onChange} required placeholder="longitude"
+              <p className='text-gray-600'>Longitude</p>
+                <input type="number" name="longitude" id="longitude" value={longitude} onChange={onChange} required placeholder="longitude"
                  className="w-full px-4 py-2 text-xl
                 text-gray-700 bg-white border border-gray-300 rounded
                 transition duration-150 ease-in-out
@@ -238,7 +239,7 @@ export default function MyEditor() {
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white  border-gray-300 rounded transition ease-in-out mb-6"
             />
           </div>
-          <h2>Add Hospital Description</h2>
+          <h2 className='text-gray-600'>Add Hospital Description</h2>
           <Editor
             editorState={editorState}
             onEditorStateChange={setEditorState}
@@ -247,7 +248,7 @@ export default function MyEditor() {
             toolbarClassName="toolbar-class"
            />
           <div className="w-full flex">
-            <input
+            {/* <input
               accept=".jpg, .png, .jpeg "
               id="images"
               type="file"
@@ -265,11 +266,11 @@ export default function MyEditor() {
               >
                 <CiImageOn className="mr-2 text-6xl rounded-full p-1 border-2"/>
               </div>
-            </label>
+            </label> */}
 
             <button
               type="submit"
-              className="w-[60%] bg-green-600 text-white uppercase px-7 py-3 mt-6 text-sm font-medium rounded shadow-md hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 flex justify-center items-center mb-6"
+              className=" w-full bg-green-600 text-white uppercase px-7 py-3 mt-6 text-sm font-medium rounded shadow-md hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 flex justify-center items-center mb-6"
             >
               Post
             </button>
