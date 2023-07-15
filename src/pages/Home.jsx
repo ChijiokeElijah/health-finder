@@ -46,7 +46,7 @@ export default function Home() {
           <h1 className='text-[#08299B] text-4xl text-center font-Roboto mt-20 px-12  '>Find Hospitals nearest to you</h1>
           <h2 className='text-gray-600 text-2xl mt-6 text-center'> Discover your perfect care: Find your Hospital, Anytime, Anywhere.</h2>
           <div className=' flex flex-col items-center justify center'>
-          <button className='h-[50px] w-[150px] bg-[#08299B] text-white rounded-lg text-center mt-6 mb-12'><Link to={'/sign-up'}>Get Started</Link></button>
+          <button className='h-[50px] w-[150px] bg-[#08299B] text-white rounded-lg text-center mt-6 mb-12'><Link to={'/sign-up'}>Find Hospital</Link></button>
           </div>
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20 sm:py-2 sm:py-3">

@@ -8,6 +8,7 @@ import {FaTimes} from "react-icons/fa"
 
 export default function Header() {
   const [pageState, setPageState] = useState("Sign in")
+  const [pageState2, setPageState2] = useState("Sign up")
   const navigate = useNavigate()
   const location = useLocation()
   const [nav, setNav] = useState(false)
@@ -17,8 +18,10 @@ export default function Header() {
     onAuthStateChanged(auth, (user)=>{
       if(user){
         setPageState("Profile")
+        setPageState2( "")
       }else{
         setPageState("Sign in")
+        setPageState2("Sign up")
       }
     })
   }, [auth])
@@ -45,6 +48,10 @@ export default function Header() {
             ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) && "!text-black !border-b-[#08299B]"}`}  
             onClick={()=>navigate
           ("/profile")}>{pageState}</li>
+           <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer 
+            ${(pathMatchRoute("/sign-up")) && "!text-black !border-b-[#08299B]"}`}  
+            onClick={()=>navigate
+          ("/sign-up")}>{pageState2}</li>
           </ul>
         </div>
 
