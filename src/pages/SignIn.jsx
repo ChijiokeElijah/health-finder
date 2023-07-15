@@ -37,7 +37,7 @@ export default function SignIn() {
   }
   return (
     <section>
-      <h1 className="text-3xl text-center mt-6 font-bold">SignIn</h1>
+      <h1 className="text-3xl text-center mt-6 font-bold text-[#08299B]">SignIn</h1>
       <div
         className="flex justify-center flex-wrap items-center 
       px-6 py-12 max-w-6xl mx-auto"
@@ -95,14 +95,14 @@ export default function SignIn() {
               <p>
                 <Link
                   to="/forgot-password"
-                  className="text-blue-600 hover:text-blue-700 transition duration-200 ease-in-out ml-2"
+                  className="text-blue-600 hover:text-[#08299B] transition duration-200 ease-in-out ml-2"
                 >
                   Forgot Password?
                 </Link>
               </p>
             </div>
             <button
-              className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
+              className="w-full bg-[#08299B] text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
               type="submit"
             >
               Sign in

@@ -1,3 +1,6 @@
+ @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@800&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,5 +8,5 @@
 
 
 body{
-    background-color: antiquewhite;
+    background-color: white;
 }

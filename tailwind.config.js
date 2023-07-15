@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        Roboto: ['Roboto Serif', 'serif']
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms')

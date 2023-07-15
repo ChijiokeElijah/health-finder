@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react'
-import logo from "../images/logo.png"
+import logo from "../images/logo.PNG"
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {getAuth, onAuthStateChanged} from  "firebase/auth";
 import {FaBars} from "react-icons/fa"
@@ -36,26 +36,26 @@ export default function Header() {
         </div>
         <div>
           <ul className='flex space-x-10 hidden md:flex'>
-            <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer ${pathMatchRoute("/") && "!text-black !border-b-green-500"}`}  onClick={()=>navigate
+            <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer ${pathMatchRoute("/") && "!text-black !border-b-[#08299B]"}`}  onClick={()=>navigate
           ("/")}>Home</li>
-                      <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer ${pathMatchRoute("/find-hospital") && "!text-black !border-b-green-500"}`}  onClick={()=>navigate
+                      <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer ${pathMatchRoute("/find-hospital") && "!text-black !border-b-[#08299B]"}`}  onClick={()=>navigate
           ("/find-hospital")}>Find Hospital</li>
 
             <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer 
-            ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) && "!text-black !border-b-green-500"}`}  
+            ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) && "!text-black !border-b-[#08299B]"}`}  
             onClick={()=>navigate
           ("/profile")}>{pageState}</li>
           </ul>
         </div>
 
         {/* Handbugger */}
-        <div onClick={handleClick} className='md:hidden z-10'>
+        <div onClick={handleClick} className='md:hidden z-50'>
           {!nav ? <FaBars/> : <FaTimes/>}
 
           {/* Mobile menu */}
           <ul className={
             !nav ? "hidden"
-            : "absolute top-0 left-0 w-full h-screen  flex flex-col justify-center items-center"
+            : "absolute top-12 left-0 w-full h-screen  flex flex-col justify-center items-center bg-slate-50 bg-opacity-80"
           }>
             <li className='py-6 text-4xl'><Link onClick={handleClick} to="/" >Home</Link></li>
             <li className='py-6 text-4xl'><Link onClick={handleClick} to="find-hospital">Find Hospital</Link></li>
