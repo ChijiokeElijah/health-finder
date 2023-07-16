@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react'
-import logo from "../images/logo.png"
+import logo from "../images/logo.PNG"
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {getAuth, onAuthStateChanged} from  "firebase/auth";
 import {FaBars} from "react-icons/fa"
