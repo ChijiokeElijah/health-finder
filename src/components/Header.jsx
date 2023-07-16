@@ -12,6 +12,7 @@ export default function Header() {
   const navigate = useNavigate()
   const location = useLocation()
   const [nav, setNav] = useState(false)
+  
   const handleClick = () => setNav(!nav);
   const auth = getAuth();
   useEffect(()=>{
@@ -64,12 +65,10 @@ export default function Header() {
             !nav ? "hidden"
             : "absolute top-12 left-0 w-full h-screen  flex flex-col justify-center items-center bg-slate-50 bg-opacity-80"
           }>
-            <li className='py-6 text-4xl'><Link onClick={handleClick} to="/" >Home</Link></li>
-            <li className='py-6 text-4xl'><Link onClick={handleClick} to="find-hospital">Find Hospital</Link></li>
-            <li className='py-6 text-4xl'><Link onClick={handleClick} to="sign-in">Sign In</Link></li>
-            <li className='py-6 text-4xl'><Link onClick={handleClick} to="sign-up">Sign Up</Link></li>
-
-
+            <li className='py-6 text-4xl'><Link to="/" >Home</Link></li>
+            <li className='py-6 text-4xl'><Link to="find-hospital">Find Hospital</Link></li>
+            <li className='py-6 text-4xl'><Link to="sign-in">Sign In</Link></li>
+            <li className='py-6 text-4xl'><Link to="sign-up">Sign Up</Link></li>
           </ul>
         </div>
       </header>
