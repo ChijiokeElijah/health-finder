@@ -65,10 +65,10 @@ export default function Header() {
             !nav ? "hidden"
             : "absolute top-12 left-0 w-full h-screen  flex flex-col justify-center items-center bg-slate-50 bg-opacity-80"
           }>
-            <li className='py-6 text-4xl'><Link to="/" >Home</Link></li>
-            <li className='py-6 text-4xl'><Link to="find-hospital">Find Hospital</Link></li>
-            <li className='py-6 text-4xl'><Link to="sign-in">Sign In</Link></li>
-            <li className='py-6 text-4xl'><Link to="sign-up">Sign Up</Link></li>
+            <li className='py-6 text-4xl text-[#08299B]'><Link to="/" >Home</Link></li>
+            <li className='py-6 text-4xl text-[#08299B]'><Link to="find-hospital">Find Hospital</Link></li>
+            <li className={`py-6 text-4xl text-[#08299B] ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile"))}`}><Link to="/profile">{pageState}</Link></li>
+            <li className={`py-6 text-4xl text-[#08299B] ${(pathMatchRoute("/sign-up")) }`} ><Link to="sign-up">{pageState2}</Link></li>
           </ul>
         </div>
       </header>

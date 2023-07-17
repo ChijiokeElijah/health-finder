@@ -304,7 +304,7 @@ useEffect(()=>{
 
             <button
               type="submit"
-              className="w-[60%] bg-green-600 text-white uppercase px-7 py-3 mt-6 text-sm font-medium rounded shadow-md hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 flex justify-center items-center mb-6"
+              className="w-[60%] bg-[#08299B] text-white uppercase px-7 py-3 mt-6 text-sm font-medium rounded shadow-md hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-[#80bfff] flex justify-center items-center mb-6"
             >
              Edit Post
             </button>
