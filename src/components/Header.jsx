@@ -7,8 +7,8 @@ import {FaTimes} from "react-icons/fa"
 
 
 export default function Header() {
-  const [pageState, setPageState] = useState("Sign in")
-  const [pageState2, setPageState2] = useState("Sign up")
+  const [pageState, setPageState] = useState("Sign In")
+  // const [pageState2, setPageState2] = useState("Sign up")
   const navigate = useNavigate()
   const location = useLocation()
   const [nav, setNav] = useState(false)
@@ -19,10 +19,10 @@ export default function Header() {
     onAuthStateChanged(auth, (user)=>{
       if(user){
         setPageState("Profile")
-        setPageState2( "")
+        // setPageState2( "")
       }else{
         setPageState("Sign in")
-        setPageState2("Sign up")
+        // setPageState2("Sign up")
       }
     })
   }, [auth])
@@ -52,7 +52,7 @@ export default function Header() {
            <li className={`py-3 text-sm font-semibold text-gray-300 border-b-[3px] border-b-transparent cursor-pointer 
             ${(pathMatchRoute("/sign-up")) && "!text-black !border-b-[#08299B]"}`}  
             onClick={()=>navigate
-          ("/sign-up")}>{pageState2}</li>
+          ("/sign-up")}>Sign Up</li>
           </ul>
         </div>
 
@@ -68,7 +68,7 @@ export default function Header() {
             <li className='py-6 text-4xl text-[#08299B]'><Link to="/" >Home</Link></li>
             <li className='py-6 text-4xl text-[#08299B]'><Link to="find-hospital">Find Hospital</Link></li>
             <li className={`py-6 text-4xl text-[#08299B] ${(pathMatchRoute("/sign-in") || pathMatchRoute("/profile"))}`}><Link to="/profile">{pageState}</Link></li>
-            <li className={`py-6 text-4xl text-[#08299B] ${(pathMatchRoute("/sign-up")) }`} ><Link to="sign-up">{pageState2}</Link></li>
+            <li className={`py-6 text-4xl text-[#08299B] ${(pathMatchRoute("/sign-up")) }`} ><Link to="sign-up">Sign Up</Link></li>
           </ul>
         </div>
       </header>
