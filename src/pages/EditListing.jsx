@@ -45,11 +45,10 @@ export default function EditListing() {
     PhoneNumber: "",
     // images: {},
     latitude: 0,
-    longitude:0
-    
+    longitude:0,
     
   });
-  const { name, address, email, State, PhoneNumber, LGA, longitude, latitude } = formData;
+  const { name, address, email, State, PhoneNumber, LGA, latitude, longitude } = formData;
  const params = useParams()
 
  useEffect(()=>{
@@ -184,8 +183,8 @@ useEffect(()=>{
     };
 
     // delete formDataCopy.images;
-    delete formDataCopy.latitude;
-    delete formDataCopy.longitude
+    // delete formDataCopy.latitude;
+    // delete formDataCopy.longitude
     const docRef = doc(db, "Hospitals", params.listingId);
     await updateDoc(docRef, formDataCopy);
     setLoading(false);
@@ -304,7 +303,7 @@ useEffect(()=>{
 
             <button
               type="submit"
-              className="w-[60%] bg-[#08299B] text-white uppercase px-7 py-3 mt-6 text-sm font-medium rounded shadow-md hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-[#80bfff] flex justify-center items-center mb-6"
+              className="w-full bg-[#08299B] text-white uppercase px-7 py-3 mt-6 text-sm font-medium rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-[#80bfff] flex justify-center items-center mb-6"
             >
              Edit Post
             </button>

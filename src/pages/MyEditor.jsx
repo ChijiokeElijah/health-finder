@@ -150,8 +150,8 @@ export default function MyEditor() {
     };
 
     // delete formDataCopy.images;
-    delete formDataCopy.latitude;
-    delete formDataCopy.longitude
+    // delete formDataCopy.latitude;
+    // delete formDataCopy.longitude
     const docRef = await addDoc(collection(db, "Hospitals"), formDataCopy);
     setLoading(false);
     toast.success("Hospital Created");

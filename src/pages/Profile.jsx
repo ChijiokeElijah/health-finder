@@ -91,10 +91,10 @@ export default function Profile() {
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
         <h1 className="text-3xl text-center mt-6 font-bold">
-          My hospital Profile
+          Welcome! <span className=" text-[#08299B]">{email}</span>
         </h1>
         <div className="w-full md:w-[50%] mt-6 px-3">
-          <form>
+          {/* <form>
             <input
               type="text"
               id="name"
@@ -137,11 +137,11 @@ export default function Profile() {
                 Sign Out
               </p>
             </div>
-          </form>
+          </form> */}
           <Link to="/create-hospital"> 
             <button type="submit" className="w-full bg-[#08299B] text-white uppercase px-7 py-3
-            text-sm font-medium rounded shadow-md hover:bg-[ADD8E6] transition duration-150
-            ease-in-out hover:shadow-lg active:bg-green-800 flex justify-center items-center">
+            text-sm font-medium rounded shadow-md hover:bg-blue-700 transition duration-150
+            ease-in-out hover:shadow-lg flex justify-center items-center">
               <MdLocalHospital className="mr-2 text-3xl bg-red-200 rounded-full p-1 border-2" />
               Add your health facility
             </button>

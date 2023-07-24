@@ -8,6 +8,7 @@ import {FaCopy, FaMapMarkerAlt} from "react-icons/fa"
 import {GiRotaryPhone} from 'react-icons/gi'
 import DOMPurify from 'dompurify';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import {HiOutlineMail} from 'react-icons/hi'
 
 export default function Hospital() {
     const [listing, setListing] =useState(null)
@@ -62,6 +63,7 @@ export default function Hospital() {
         <div className='w-full'>
         <p className='text-3xl font-bold mb-1 text-blue-900 '>{listing.name}</p>
         <p className='flex items-center mt-2 mb-3 font-semibold'> <GiRotaryPhone className='text-green-700 mr-1'/>: {listing.PhoneNumber}</p>
+        <p className='flex items-center mt-2 font-semibold'><HiOutlineMail className='text-green-700 mr-1'/>: {listing.email}</p>
         <p className='flex items-center mt-2 font-semibold'><FaMapMarkerAlt className='text-green-700 mr-1'/>: {listing.address},</p>
         <p className='flex items-center pl-7 font-semibold'>{listing.LGA},</p>
         <p className='flex items-center pl-7 font-semibold'>{listing.State}.</p>
