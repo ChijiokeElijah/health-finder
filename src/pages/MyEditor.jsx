@@ -12,9 +12,11 @@ import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 // import { CiImageOn } from "react-icons/ci";
 import {convertToHTML} from 'draft-convert';
+import { useNavigate } from "react-router";
 
 
 export default function MyEditor() {
+  const navigate = useNavigate()
   const [geoLocationEnabled, setGeoLocationEnabled] = useState(false)
   const [editorState, setEditorState] = useState(
   () => EditorState.createEmpty(),
@@ -47,16 +49,11 @@ export default function MyEditor() {
   const { name, address, email, latitude, longitude, State, PhoneNumber, LGA} = formData;
 
   function onChange(e) {
-    // if(e.target.files){
-    //   setFormData((prevState)=>({
-    //     ...prevState,
-    //     images: e.target.files
-    //   }))
-    // }
+    
     if (!e.target.files) {
       setFormData((prevState) => ({
         ...prevState,
-        [e.target.id]: e.target.value,
+        [e.target.id]: e.target.value.toUpperCase(),
         
       }));  
     }
@@ -69,11 +66,7 @@ export default function MyEditor() {
     e.preventDefault();
     setLoading(true);
 
-    // if(images.length < 1){
-    //   setLoading(false);
-    //   toast.error("Add an image")
-    //   return;
-    // }
+    
     let geolocation ={}
     let location 
     if(geoLocationEnabled){
@@ -96,65 +89,20 @@ export default function MyEditor() {
       geolocation.lng = longitude
     }
 
-//     async function storeImage(image){
-//       return new Promise((resolve, reject) =>{
-//         const storage = getStorage()
-//         const filename = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
-//         const storageRef = ref(storage, filename );
-//         const uploadTask = uploadBytesResumable(storageRef, image);
-//         uploadTask.on('state_changed', 
-//   (snapshot) => {
-//     // Observe state change events such as progress, pause, and resume
-//     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-//     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-//     console.log('Upload is ' + progress + '% done');
-//     switch (snapshot.state) {
-//       case 'paused':
-//         console.log('Upload is paused');
-//         break;
-//       case 'running':
-//         console.log('Upload is running');
-//         break;
-//     }
-//   }, 
-//   (error) => {
-//     // Handle unsuccessful uploads
-//     reject(error)
-//   }, 
-//   () => {
-//     // Handle successful uploads on complete
-//     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-//     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-//       resolve(downloadURL);
-//     });
-//   }
-// );
-//       })
-//     }
-
-//     const imgUrls = await Promise.all(
-//     [...images].map((image) =>storeImage(image))).catch((error)=>{
-//       setLoading(false)
-//       toast.error("images not uploaded")
-//       return
-//     });
-
     
     const formDataCopy = {
       ...formData,
-      // imgUrls,
       geolocation,
       content: convertedContent,
      timestamp: serverTimestamp(),
     userRef: auth.currentUser.uid,
     };
 
-    // delete formDataCopy.images;
-    // delete formDataCopy.latitude;
-    // delete formDataCopy.longitude
+    
     const docRef = await addDoc(collection(db, "Hospitals"), formDataCopy);
     setLoading(false);
     toast.success("Hospital Created");
+    navigate("/profile")
   }
   if (loading) {
     return <Spinner />;
@@ -248,26 +196,6 @@ export default function MyEditor() {
             toolbarClassName="toolbar-class"
            />
           <div className="w-full flex">
-            {/* <input
-              accept=".jpg, .png, .jpeg "
-              id="images"
-              type="file"
-              name="images"
-              onChange={onChange}
-              style={{ display: "none" }}
-              required
-            />
-            <label htmlFor="images">
-              <div
-                color="primary"
-                aria-label="upload picture"
-                component="span"
-                
-              >
-                <CiImageOn className="mr-2 text-6xl rounded-full p-1 border-2"/>
-              </div>
-            </label> */}
-
             <button
               type="submit"
               className=" w-full bg-[#08299B] text-white uppercase px-7 py-3 mt-6 text-sm font-medium rounded shadow-md hover:bg-[#80bfff] transition duration-150 ease-in-out hover:shadow-lg active:bg-[#80bfff] flex justify-center items-center mb-6"

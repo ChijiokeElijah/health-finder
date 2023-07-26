@@ -4,6 +4,7 @@ import { db } from '../firebase'
 import Spinner from '../components/Spinner'
 import hero from "../images/hero.jpg"
 import { Link } from 'react-router-dom'
+import FindHospital from './FindHospital'
 
 export default function Home() {
   const [listings, setListings] = useState(null)
@@ -26,7 +27,6 @@ export default function Home() {
           })
         })
         setListings(listings)
-        console.log(listings);
       } catch (error) {
         
       }
@@ -40,7 +40,7 @@ export default function Home() {
   }
    
   return (
-    <div className="flex justify-center flex-wrap flex-cols items-center max-w-6xl mx-auto h-screen">
+    <div className="flex justify-center flex-wrap flex-cols items-center max-w-6xl mx-auto h-fit-content">
         
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mt-10 md:mb-6 ">
           <h1 className='text-[#08299B] text-4xl text-center font-Roboto mt-20 px-12  '>Find Hospitals nearest to you</h1>
@@ -52,6 +52,18 @@ export default function Home() {
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20 sm:py-2 sm:py-3">
           <img src={hero} alt='' className='w-full rounded-2xl' />
         </div>
+
+        <div name='about' className="w-full md:h-screen">
+        <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-[500px]">
+          <h2 className='text-4xl text-[#08299B] text-black-800 font-semibold mb-6'>About Us</h2>
+          <p className='text-2xl  '>CareFinder helps you find the best hospitals and medical centers within your region.
+            We provide you with a list of Hospitals around you and their respective contact details, including address, phone number, and email.
+            We help you navigate to the hospital of your choice through the help a map.
+            You can also share the link of your selected hospital or export a list of hospitals within your selected area with family and friends. 
+          </p>
+        </div>
+        </div>
     </div>
+    
   )
 }

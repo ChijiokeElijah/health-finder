@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { db } from "../firebase";
-import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, orderBy, query,  where } from "firebase/firestore";
 import { MdLocalHospital } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -14,42 +14,12 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const auth = getAuth();
   const navigate = useNavigate();
-  const [changeDetail, setChangeDetail] = useState(false);
+  // const [changeDetail, setChangeDetail] = useState(false);
   const [formData, setFormData] = useState({
-    name:  "",
     email: "",
   });
-  const { name, email } = formData;
-  function onLogOut() {
-    auth.signOut();
-    navigate("/");
-  }
-
-  function onChange(e) {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
-  }
-  async function onSubmit() {
-    try {
-      if (auth.currentUser.displayName !== name) {
-        //update display name in firebase auth
-        await updateProfile(auth.currentUser, {
-          displayName: name,
-        });
-
-        //update name in the firestore
-        const docRef = doc(db, "users", auth.currentUser.uid);
-        await updateDoc(docRef, {
-          name,
-        });
-      }
-      toast.success("Profile Details updated");
-    } catch (error) {
-      toast.error("Could not update the profile details");
-    }
-  }
+  const {  email } = formData;
+  
   useEffect(()=>{
     async function fetchUserListing(){
       const listingRef = collection(db, "Hospitals");
@@ -94,51 +64,7 @@ export default function Profile() {
           Welcome! <span className=" text-[#08299B]">{email}</span>
         </h1>
         <div className="w-full md:w-[50%] mt-6 px-3">
-          {/* <form>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              disabled={!changeDetail}
-              onChange={onChange}
-              className={`w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded 
-          transition ease-in-out mb-6 ${
-            changeDetail && "bg-green-200 focus:bg-green-200"
-          }`}
-            />
-            <input
-              type="email"
-              id="email"
-              value={email}
-              disabled={!changeDetail}
-              onChange={onChange}
-              className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded 
-          transition ease-in-out mb-6"
-            />
-
-            <div className=" mb-6 flex justify-between whitespace-nowrap text-sm sm:text-lg">
-              <p className="flex items-center ">
-                Do you want to change your name?
-                <span
-                  className="text-red-600 hover:text-red-700 transition  ease-in-out duration-200 ml-1 
-              cursor-pointer"
-                  onClick={() => {
-                    changeDetail && onSubmit();
-                    setChangeDetail((prevState) => !prevState);
-                  }}
-                >
-                  {changeDetail ? "Apply change" : "Edit"}
-                </span>
-              </p>
-              <p
-                onClick={onLogOut}
-                className="text-blue-600 hover:text-blue-800 cursor-pointer transition ease-in-out duration-200"
-              >
-                Sign Out
-              </p>
-            </div>
-          </form> */}
-          <Link to="/create-hospital"> 
+                    <Link to="/create-hospital"> 
             <button type="submit" className="w-full bg-[#08299B] text-white uppercase px-7 py-3
             text-sm font-medium rounded shadow-md hover:bg-blue-700 transition duration-150
             ease-in-out hover:shadow-lg flex justify-center items-center">
