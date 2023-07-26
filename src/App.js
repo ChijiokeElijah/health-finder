@@ -8,7 +8,7 @@ import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MyEditor from "./pages/MyEditor";
+import AddHospital from "./pages/AddHospital";
 import EditListing from "./pages/EditListing";
 import Hospital from "./pages/Hospital";
 import FindHospital from "./pages/FindHospital";
@@ -29,7 +29,7 @@ function App() {
           <Route path="/find-hospital" element={<FindHospital />} />
           <Route path='/:hospitalName/:listingId' element={<Hospital />} />
           <Route path="create-hospital" element={<PrivateRoute/>}>
-            <Route path="/create-hospital" element={<MyEditor/>}/>
+            <Route path="/create-hospital" element={<AddHospital/>}/>
           </Route>
           <Route path="edit-listing" element={<PrivateRoute/>}>
             <Route path="/edit-listing/:listingId" element={<EditListing/>}/>

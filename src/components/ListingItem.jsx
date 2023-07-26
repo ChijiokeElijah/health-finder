@@ -7,7 +7,7 @@ import {MdEdit} from 'react-icons/md'
 export default function ListingItem({listing, id, onDelete, onEdit}) {
   return (
     <li className="relative bg-white flex flex-col 
-    shadow-md hover:shadow-xl rounded-md overfole-hidden transition-shadow duration-150 m-[10px]">
+    shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px]">
         <Link to={`/${listing.name}/${id}`}>
             
             <div className='w-full p-[10px] '>

@@ -14,7 +14,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const auth = getAuth();
   const navigate = useNavigate();
-  // const [changeDetail, setChangeDetail] = useState(false);
+  
   const [formData, setFormData] = useState({
     email: "",
   });

@@ -142,6 +142,7 @@ export default function MyEditor() {
           <input
             id="address"
             value={address}
+            maxLength={35}
             onChange={onChange}
             type="text"
             placeholder="Address"

@@ -63,6 +63,11 @@ export default function Home() {
           </p>
         </div>
         </div>
+        <div name='find-hospital' className="w-full md:h-screen sm:mt-6">
+        <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center  w-full h-[500px]">
+          <FindHospital/>
+                  </div>
+        </div>
     </div>
     
   )
