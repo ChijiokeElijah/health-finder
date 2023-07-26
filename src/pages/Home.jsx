@@ -49,12 +49,12 @@ export default function Home() {
           <button className='h-[50px] w-[150px] bg-[#08299B] hover:bg-blue-700 text-white rounded-lg text-center mt-6 mb-12'><Link to={'/find-hospital'}>Find Hospital</Link></button>
           </div>
         </div>
-        <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20 sm:py-2 sm:py-3">
+        <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20 sm:py-2 sm:py-3 mb-6">
           <img src={hero} alt='' className='w-full rounded-2xl' />
         </div>
 
-        <div name='about' className="w-full md:h-screen">
-        <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-[500px]">
+        <div name='about' className="w-full md:h-screen sm:mt-6">
+        <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center  w-full h-[500px]">
           <h2 className='text-4xl text-[#08299B] text-black-800 font-semibold mb-6'>About Us</h2>
           <p className='text-2xl  '>CareFinder helps you find the best hospitals and medical centers within your region.
             We provide you with a list of Hospitals around you and their respective contact details, including address, phone number, and email.

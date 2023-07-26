@@ -45,12 +45,12 @@ if(loading){
   return (
     <div className="w-full md:h-screen text">
       <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full h-[500px]">
-      <h2 className='text-4xl text-black-800 font-semibold mb-6'>Find Hospital</h2>
+      <h2 className='text-4xl text-[#08299B] font-semibold mb-6'>Find Hospital</h2>
       <input type='text' id='state' value={state} onChange={onChange} placeholder='Enter your State' className='border border-gray-400 '/>
       {hospitalListings && hospitalListings.length > 0 && (
         <div className='max-w-6xl mx-auto pt-4 space-y-6'>
-          <h2 className='px-3 text-2xl mt-6 font-semibold'> Hospitals in {state} </h2>
-          <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+          <h2 className='text-2xl mt-6 font-semibold'> Hospitals in {state} </h2>
+          <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6 mb-6'>
             {hospitalListings.map((listing)=>(
               <ListingItem key={listing.id} listing={listing.data} id={listing.id}/>
             ))}

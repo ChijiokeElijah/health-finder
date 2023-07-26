@@ -61,7 +61,7 @@ export default function Profile() {
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
         <h1 className="text-3xl text-center mt-6 font-bold">
-          Welcome! <span className=" text-[#08299B]">{email}</span>
+          Welcome! <span className=" text-[#08299B] text-sm font-medium">{email}</span>
         </h1>
         <div className="w-full md:w-[50%] mt-6 px-3">
                     <Link to="/create-hospital"> 
