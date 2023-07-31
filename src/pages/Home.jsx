@@ -42,15 +42,16 @@ export default function Home() {
   return (
     <div className="flex justify-center flex-wrap flex-cols items-center max-w-6xl mx-auto h-fit-content">
         
-        <div className="md:w-[67%] lg:w-[50%] mb-12 md:mt-10 md:mb-6 ">
+        <div className="md:w-[67%] lg:w-[40%] mb-12 md:mt-10 md:mb-6 ">
           <h1 className='text-[#08299B] text-center font-Roboto mt-20 px-12 lg:text-4xl text-3xl '>Find Hospitals nearest to you</h1>
           <h2 className='text-gray-600 lg:text-2xl mt-6 text-center text-lg'> Discover your perfect care: Find your Hospital, Anytime, Anywhere.</h2>
           <div className=' flex flex-col items-center justify center'>
           <button className='h-[50px] w-[150px] bg-[#08299B] hover:bg-blue-700 text-white rounded-lg text-center mt-6 mb-12'><Link to={'/find-hospital'}>Find Hospital</Link></button>
           </div>
         </div>
-        <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20 sm:py-2 sm:py-3 mb-6">
-          <img src={hero} alt='' className='w-full rounded-2xl' />
+        <div className="w-full md:w-[67%] lg:w-[50%] lg:ml-20  lg:mt-20 sm:py-2 mb-6">
+          <img  src={hero}
+ alt='' className='w-full rounded-2xl' />
         </div>
 
         <div name='about' className="w-full md:h-screen">
@@ -66,7 +67,7 @@ export default function Home() {
         <div name='find-hospital' className="w-full md:h-screen">
         <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-[500px]">
           <FindHospital/>
-                  </div>
+        </div>
         </div>
     </div>
     
